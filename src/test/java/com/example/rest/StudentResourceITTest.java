@@ -10,6 +10,7 @@ import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import javax.annotation.sql.DataSourceDefinition;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 
@@ -32,15 +33,13 @@ public class StudentResourceITTest {
 
 	@Deployment
 	public static WebArchive createDeployment() {
-		WebArchive webArchive = ShrinkWrap.create(WebArchive.class, "testtomee.war")
+		return ShrinkWrap.create(WebArchive.class, "testtomee.war")
 				 .addPackages(true, "com.example")
 				 .addAsWebInfResource("beans.xml")
 				 .addAsResource("META-INF/test-persistence.xml", "META-INF/persistence.xml")
 				 .addAsResource("test.properties")
 				 .addAsResource("base.properties")
 				 .addAsLibraries(Maven.resolver().resolve("org.tomitribe:sabot:0.9").withTransitivity().asFile());
-		webArchive.as(ZipExporter.class).exportTo(new File("/home/ravi/hello.war"), true);
-		return webArchive;
 	}
 	
 	@ArquillianResource

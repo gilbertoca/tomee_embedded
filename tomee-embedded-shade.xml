@@ -27,10 +27,16 @@
 		    <version>${version.tomee}</version>
 		</dependency>
 		<dependency>
+			<groupId>org.eclipse.persistence</groupId>
+			<artifactId>eclipselink</artifactId>
+			<version>2.6.1</version>
+		</dependency>
+		<dependency>
         	<groupId>com.h2database</groupId>
         	<artifactId>h2</artifactId>
         	<version>1.4.191</version>
         </dependency>
+     
         <!-- <dependency>
         	<groupId>oracle.jdbc</groupId>
         	<artifactId>ojdbc</artifactId>

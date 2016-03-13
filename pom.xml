@@ -9,6 +9,7 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <version.tomee>7.0.0-M3</version.tomee>
+        <version.h2>1.4.191</version.h2>
         <failOnMissingWebXml>false</failOnMissingWebXml>
     </properties>
     <dependencies>
@@ -16,6 +17,7 @@
 			<groupId>org.tomitribe</groupId>
 			<artifactId>sabot</artifactId>
 			<version>0.9</version>
+			<scope>runtime</scope>
 		</dependency>
         <dependency>
         	<groupId>org.apache.tomee</groupId>
@@ -64,6 +66,9 @@
         			<tomeeVersion>${version.tomee}</tomeeVersion>
         			<tomeeClassifier>webprofile</tomeeClassifier>
         			<context>ROOT</context>
+        			<libs>
+        				<lib>com.h2database:h2:${version.h2}</lib>
+        			</libs>
         			<systemVariables>
         				<org.tomitribe.sabot.environment>prod</org.tomitribe.sabot.environment>
         			</systemVariables>
@@ -77,6 +82,14 @@
     		<activation>
     			<activeByDefault>true</activeByDefault>
     		</activation>
+    		<build>
+    			<plugins>
+    				<plugin>
+						<artifactId>maven-war-plugin</artifactId>
+						<version>2.6</version>
+					</plugin>
+    			</plugins>
+    		</build>
     	</profile>
     </profiles>
 </project>
