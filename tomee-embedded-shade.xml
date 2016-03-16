@@ -74,6 +74,7 @@
 	                  <artifact>*:*</artifact>
 	                  <excludes>
 	                    <exclude>META-INF/faces-config.xml</exclude>
+	                    <exclude>META-INF/web-fragment.xml</exclude>
 	                  </excludes>
 	                </filter>
 	              </filters>
