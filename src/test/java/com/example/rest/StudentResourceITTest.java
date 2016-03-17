@@ -4,13 +4,11 @@ import static net.javacrumbs.jsonunit.JsonAssert.assertJsonEquals;
 import static net.javacrumbs.jsonunit.JsonAssert.when;
 import static org.junit.Assert.assertEquals;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import javax.annotation.sql.DataSourceDefinition;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 
@@ -18,13 +16,13 @@ import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.exporter.ZipExporter;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.shrinkwrap.resolver.api.maven.Maven;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import net.javacrumbs.jsonunit.core.Option;
+import static net.javacrumbs.jsonunit.core.Option.COMPARING_ONLY_STRUCTURE;
+import static net.javacrumbs.jsonunit.core.Option.TREATING_NULL_AS_ABSENT;
 
 @RunWith(Arquillian.class)
 public class StudentResourceITTest {
@@ -67,7 +65,7 @@ public class StudentResourceITTest {
 								.request()
 								.get(String.class);
 		String expected = readFile("student1.json");
-		assertJsonEquals(expected, response, when(Option.COMPARING_ONLY_STRUCTURE));
+		assertJsonEquals(expected, response, when(TREATING_NULL_AS_ABSENT));
 	}
 	
 	public String readFile(String fileName)  {
