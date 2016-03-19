@@ -17,19 +17,29 @@
 			<groupId>org.tomitribe</groupId>
 			<artifactId>sabot</artifactId>
 			<version>0.9</version>
-			<scope>runtime</scope>
 		</dependency>
         <dependency>
         	<groupId>org.apache.tomee</groupId>
         	<artifactId>tomee-embedded</artifactId>
         	<version>${version.tomee}</version>
+        	<scope>provided</scope>
         </dependency>
+        <dependency>
+			<groupId>org.eclipse.persistence</groupId>
+			<artifactId>eclipselink</artifactId>
+			<version>2.6.1</version>
+		</dependency>
+        <dependency>
+			<groupId>org.jolokia</groupId>
+			<artifactId>jolokia-core</artifactId>
+			<version>1.3.3</version>
+		</dependency>
         <dependency>
 			<groupId>net.javacrumbs.json-unit</groupId>
 			<artifactId>json-unit</artifactId>
 			<version>1.9.0</version>
 			<scope>test</scope>
-		</dependency>
+        </dependency>
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
@@ -53,7 +63,13 @@
         	<artifactId>arquillian-tomee-embedded</artifactId>
         	<version>${version.tomee}</version>
         	<scope>test</scope>
-        </dependency>
+        	<exclusions>
+        		<exclusion>
+        			<artifactId>slf4j-api</artifactId>
+        			<groupId>org.slf4j</groupId>
+        		</exclusion>
+        	</exclusions>
+		</dependency>
     </dependencies>
     <build>
         <finalName>tomee_embedded</finalName>
@@ -68,11 +84,27 @@
         			<context>ROOT</context>
         			<libs>
         				<lib>com.h2database:h2:${version.h2}</lib>
+        				<lib>org.apache.cxf:cxf-rt-transports-http-hc:3.1.5</lib>
+        				<lib>org.apache.httpcomponents:httpcore-nio:4.4.1</lib>
+        				<lib>org.apache.httpcomponents:httpasyncclient:4.1</lib>
+        				<lib>org.slf4j:jcl-over-slf4j:1.7.14</lib>
         			</libs>
         			<systemVariables>
         				<org.tomitribe.sabot.environment>prod</org.tomitribe.sabot.environment>
-        			</systemVariables>
-        		</configuration>
+        				<openejb.system.apps>true</openejb.system.apps>
+						<tomee.serialization.class.blacklist>-</tomee.serialization.class.blacklist>
+					</systemVariables>
+					<!-- <deployOpenEjbApplication>true</deployOpenEjbApplication> -->
+					<tomeeHttpPort>8060</tomeeHttpPort>
+					<tomeeShutdownPort>8061</tomeeShutdownPort>
+					<synchronization>
+				      <extensions>
+				        <extension>.class</extension>
+				      </extensions>
+				     <updateInterval>2</updateInterval>
+				    </synchronization>
+				    <reloadOnUpdate>true</reloadOnUpdate>
+				</configuration>
         	</plugin>
         </plugins>
     </build>
