@@ -38,7 +38,7 @@ public class StudentResourceITTest {
 				 .addAsResource("test.properties")
 				 .addAsResource("base.properties")
 				 .addAsLibraries(Maven.resolver().resolve("org.tomitribe:sabot:0.9").withTransitivity().asFile());
-	}
+		}
 	
 	@ArquillianResource
 	private URI baseUrl;
