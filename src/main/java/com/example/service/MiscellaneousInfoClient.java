@@ -24,7 +24,6 @@ import com.example.util.RestClient;
  * @author Ravisankar C
  *
  */
-//This service calls /akamai/dr/mobileapp/miscellaneousinfo.js
 @ApplicationScoped
 public class MiscellaneousInfoClient {
 	
@@ -58,7 +57,7 @@ public class MiscellaneousInfoClient {
 		if(miscInfo != null) {
 			Cache.store.setMiscInfo(miscInfo);
 			//Below logic is used to store tiles in case insensitive format
-			//Copying from MiscInfo tiles Map to BookingsCache.store tiles TreeMap
+			//Copying from MiscInfo tiles Map to Cache.store tiles TreeMap
 			//Using TreeMap we can do case insensitive comparison.
 			//ex: From Amadeus reservation system we get title as "LTGEN" but in json it is "LtGen"
 			Cache.store.getMiscInfo()
