@@ -15,6 +15,9 @@
 		        DefaultDataSource.UserName = sa
 		        DefaultDataSource.Password = sa
 		      </property>
+		      <property name="additionalLibs">
+		      	mvn:com.h2database:h2:1.4.191
+		      </property>
 		</configuration>
 	</container>
 	<extension qualifier="cucumber">

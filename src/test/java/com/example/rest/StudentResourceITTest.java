@@ -2,7 +2,9 @@ package com.example.rest;
 
 import static net.javacrumbs.jsonunit.JsonAssert.assertJsonEquals;
 import static net.javacrumbs.jsonunit.JsonAssert.when;
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 
 import java.io.IOException;
 import java.net.URI;
@@ -11,6 +13,8 @@ import java.nio.file.Paths;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.Response;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
@@ -66,6 +70,14 @@ public class StudentResourceITTest {
 								.get(String.class);
 		String expected = readFile("student1.json");
 		assertJsonEquals(expected, response, when(TREATING_NULL_AS_ABSENT));
+	}
+	
+	@Test
+	public void test_add_student() {
+		Response response = client.target(baseUrl.toString()+"api/student")
+								.request()
+								.post(Entity.json("{\"name\":\"Hello\"}"));
+		assertThat(response.getStatus(), equalTo(201));
 	}
 	
 	public String readFile(String fileName)  {
