@@ -12,13 +12,19 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
+import com.example.service.MiscellaneousInfoClient;
 import com.example.util.GZIPDecoder;
+import com.example.util.RestClient;
 
 @Path("/")
 public class RestClientTestAsyncResource {
 
 	@Inject
+	@RestClient
 	private Client client;	
+	
+	@Inject
+	private MiscellaneousInfoClient miscClient;
 	
 	@GET
 	@Path("client/async")
@@ -52,5 +58,13 @@ public class RestClientTestAsyncResource {
 					 .request()
 					 .header("Accept-Encoding", "gzip,deflate")
 					 .get(String.class);
+	}	
+	
+	@GET
+	@Path("client/test")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String callExternalSync() {
+		miscClient.getMiscellaneousInfo();
+		return "hello";
 	}	
 }
