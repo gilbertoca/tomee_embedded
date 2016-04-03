@@ -41,8 +41,6 @@ public class MiscellaneousInfoClient {
 		//LOG.info("Calling MiscellaneousInfo URL :: "+url);
 		try {
 			// We have registered a JsonContentTypeResponseFilter since the url 
-			// http://www.qantas.com.au/akamai/dr/mobileapp/miscellaneousinfo.js
-			// returns a x-javascript content type and jaxrs fails to de-serialize the received response.
 			// Using JsonContentTypeResponseFilter we will override the content type to application/json
 			return  client.target(url)
 						  .register(JsonContentTypeResponseFilter.class)

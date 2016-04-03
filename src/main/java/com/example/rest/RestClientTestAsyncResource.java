@@ -62,9 +62,7 @@ public class RestClientTestAsyncResource {
 	
 	@GET
 	@Path("client/test")
-	@Produces(MediaType.TEXT_PLAIN)
-	public String callExternalSync() {
-		miscClient.getMiscellaneousInfo();
-		return "hello";
+	public Response callExternalSync() {
+		return Response.ok(miscClient.getMiscellaneousInfo()).type(MediaType.APPLICATION_JSON_TYPE).build();
 	}	
 }
