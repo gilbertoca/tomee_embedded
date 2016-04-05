@@ -44,8 +44,7 @@ public class RestClientProducer {
 		boolean useProxy = ip.getAnnotated().getAnnotation(RestClient.class).useProxy();
 		int readTimeout = ip.getAnnotated().getAnnotation(RestClient.class).readTimeout();
 		int connectTimeout = ip.getAnnotated().getAnnotation(RestClient.class).connectTimeout();
-		int maxConnectionsPerRoute = ip.getAnnotated().getAnnotation(RestClient.class)
-									   				  .maxConnectionsPerRoute();
+		int maxConnectionsPerRoute = ip.getAnnotated().getAnnotation(RestClient.class).maxConnectionsPerRoute();
 		LOG.info("Creating the JAX-RS rest client userProxy : "+useProxy
 				+", readTimeout : "+readTimeout+", connectTimeout : "+ connectTimeout);
 		if(System.getProperty("jboss.host.name") != null) {
@@ -67,7 +66,7 @@ public class RestClientProducer {
 			 //For Jersey Implementation
 			clientBuilder.property("jersey.config.client.connectTimeout", connectTimeout); // in milli seconds
 			clientBuilder.property("jersey.config.client.readTimeout", readTimeout); // in milli seconds
-	        //For Apache CXF Implementation
+	        	//For Apache CXF Implementation
 			clientBuilder.property("http.connection.timeout", String.valueOf(connectTimeout)); 
 			clientBuilder.property("http.receive.timeout", String.valueOf(readTimeout));
 			if(useProxy) {
