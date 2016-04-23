@@ -13,7 +13,7 @@ import javax.enterprise.inject.spi.InjectionPoint;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 
-import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
+//import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
 
 /**
  * @author Ravisankar C
@@ -47,7 +47,7 @@ public class RestClientProducer {
 		int maxConnectionsPerRoute = ip.getAnnotated().getAnnotation(RestClient.class).maxConnectionsPerRoute();
 		LOG.info("Creating the JAX-RS rest client userProxy : "+useProxy
 				+", readTimeout : "+readTimeout+", connectTimeout : "+ connectTimeout);
-		if(System.getProperty("jboss.host.name") != null) {
+		/*if(System.getProperty("jboss.host.name") != null) {
 			ResteasyClientBuilder clientBuilder =  new ResteasyClientBuilder()
 					.maxPooledPerRoute(maxConnectionsPerRoute)
 					.connectionPoolSize(500)
@@ -61,7 +61,7 @@ public class RestClientProducer {
 			clientsMap.put(injectedClazzName, clientBuilder.build());
 			return clientsMap.get(injectedClazzName);
 		}
-		else {
+		else {*/
 			ClientBuilder clientBuilder = ClientBuilder.newBuilder();
 			 //For Jersey Implementation
 			clientBuilder.property("jersey.config.client.connectTimeout", connectTimeout); // in milli seconds
@@ -82,7 +82,7 @@ public class RestClientProducer {
 			clientsMap.put(injectedClazzName, clientBuilder.build());
 			return clientsMap.get(injectedClazzName);
 		}
-	}
+	//}
 	
 	@PreDestroy
 	public void destroy() {

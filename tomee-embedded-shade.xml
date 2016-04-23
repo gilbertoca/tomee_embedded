@@ -42,11 +42,25 @@
 			<groupId>org.apache.cxf</groupId>
 			<artifactId>cxf-rt-transports-http-hc</artifactId>
 			<version>3.1.5</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>cxf-core</artifactId>
+					<groupId>org.apache.cxf</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>slf4j-api</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>cxf-rt-transports-http</artifactId>
+					<groupId>org.apache.cxf</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse.persistence</groupId>
 			<artifactId>eclipselink</artifactId>
-			<version>2.6.1</version>
+			<version>2.6.2</version>
 		</dependency>
 		<dependency>
 			<groupId>com.h2database</groupId>
