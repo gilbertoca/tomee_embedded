@@ -8,7 +8,7 @@
 	<properties>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
-		<version.tomee>7.0.0-M3</version.tomee>
+		<version.tomee>7.0.1</version.tomee>
 		<version.h2>1.4.191</version.h2>
 		<version.surefire.plugin>2.19.1</version.surefire.plugin>
 		<version.openejb.agent>4.7.4</version.openejb.agent>
@@ -145,7 +145,7 @@
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>0.7.4.201502262128</version>
+				<version>0.7.6.201602180812</version>
 				<configuration>
 					<excludes>
 						<exclude>org/apache/**</exclude>
